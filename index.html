@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="./index.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <title>Recuperatorio Primer Parcial</title>
+</head>
+<body>
+    <!-- inicio: Form DATOS -->
+    <div class="container mt-3" id="form-datos">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-9 col-xl-8">
+                <div class="custom-div w-90">
+                    <form class="row g-3">
+                        <h5>Form Datos</h5>
+
+                        <!-- inicio: select -->
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                              <select class="form-select form-select-vehiculos" id="select-personas">
+                                <option selected value="Todos">Todos</option>
+                                <option value="Heroe">Heroe</option>
+                                <option value="Villano">Villano</option>
+                              </select>
+                              <label for="floatingSelectGrid">Filtrar por:</label>
+                            </div>
+                        </div>
+                        <!-- fin: select -->
+
+                        <!-- inicio: checkboxes -->
+                        <div id="checkboxes" class="col-12">
+                        </div>
+                        <!-- fin: checkboxes -->
+
+                        <!-- inicio: calcular promedio -->
+                        <div class="col-md-4">
+                            <label for="input-promedio-read-only" class="form-label">Promedio edad promedio:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="input-promedio-read-only" value="" readonly>
+                        </div>
+                        <div class="col-md-2">
+                            <button onclick="getPromedio()">Calcular</button>
+                        </div>
+                        <!-- fin: calcular promedio -->
+
+                        <!-- inicio: tabla -->
+                        <table id="table-personas" class="table">
+                        </table>
+                        <!-- fin: tabla -->
+                      </form>
+                      <button onclick="abrirForm()">Agregar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- fin: Form DATOS -->
+    
+    <!-- inicio: Form ABM -->
+
+    <div class="container mt-3" id="form-abm" style="display: none;">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-9 col-xl-8">
+                <div class="custom-div w-90">
+                    <form class="row g-3">
+                        <h5>Form ABM</h5>
+                        
+                        <!-- inicio: inputs datos -->
+                        <div class="col-8">
+                          <div class="form-group" id="div-input-id">
+                            <label for="idElement">ID:</label>
+                            <input id="idElement" type="text" class="form-control">
+                          </div>
+                        </div>
+                    
+                        <div class="col-8">
+                          <div class="form-group">
+                            <label for="">Nombre:</label>
+                            <input id="nombreElement" type="text" class="form-control">
+                          </div>
+                        </div>
+                    
+                        <div class="col-8">
+                          <div class="form-group">
+                            <label for="">Apellido:</label>
+                            <input id="apellidoElement" type="text" class="form-control">
+                          </div>
+                        </div>
+                    
+                        <div class="col-8">
+                          <div class="form-group">
+                            <label for="">Edad:</label>
+                            <input id="edadElement" type="text" class="form-control">
+                          </div>
+                        </div>
+                        
+                        <div class="col-8">
+                            <div class="form-floating">
+                                <select class="form-select form-select-vehiculos" id="select-personas-abm">
+                                  <option selected value="Heroe">Heroe</option>
+                                  <option value="Villano">Villano</option>
+                                </select>
+                                <label for="floatingSelectGrid">Tipo:</label>
+                            </div>
+                        </div>
+
+                        <div id="inputs-heroe">
+                          <div class="col-8">
+                            <div class="form-group">
+                              <label for="">AlterEgo:</label>
+                              <input id="alterEgoElement" type="text" class="form-control">
+                            </div>
+                          </div>
+                          <div class="col-8">
+                            <div class="form-group">
+                              <label for="">Ciudad:</label>
+                              <input id="ciudadElement" type="text" class="form-control">
+                            </div>
+                          </div>
+                          <div class="col-8">
+                            <div class="form-group">
+                              <label for="">Publicado:</label>
+                              <input id="publicadoElement" type="text" class="form-control">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div id="inputs-villano" style="display: none;">
+                          <div class="col-8">
+                            <div class="form-group">
+                              <label for="">Enemigo:</label>
+                              <input id="enemigoElement" type="text" class="form-control">
+                            </div>
+                          </div>
+                          <div class="col-8">
+                            <div class="form-group">
+                              <label for="">Robos:</label>
+                              <input id="robosElement" type="text" class="form-control">
+                            </div>
+                          </div>
+                          <div class="col-8">
+                            <div class="form-group">
+                              <label for="">Asesinatos:</label>
+                              <input id="asesinatosElement" type="text" class="form-control">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- fin: inputs datos -->
+
+                        <!-- inicio: action buttons -->
+                        <div class="row mt-3">
+                          <div class="col-12">
+                            <div class="d-flex ">
+                              <button class="me-4" id="btn-a" onclick="addItem()">Agregar</button>
+                              <button class="me-4" id="btn-m" onclick="modifyItem()">Modificar</button>
+                              <button class="me-4" id="btn-e" onclick="deleteItem()">Eliminar</button>
+                              <button class="me-4" onclick="abrirForm()">Cancelar</button>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- fin: action buttons -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- fin: Form ABM -->
+
+    
+
+    <script>
+        // muestra todos los checkboxes al principio
+        showCheckboxes();
+
+        // muestra la tabla con todos los vehiculos
+        showTable();
+
+        // verifica que checkbox esta seleccionado
+        const checkboxes = document.querySelectorAll('.form-check-input');
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', showTable);
+        });
+
+        // verifica que select esta seleccionado
+        const select = document.getElementById('select-personas');
+        select.addEventListener('change', showTable);
+
+        const selectAbm = document.getElementById('select-personas-abm');
+        selectAbm.addEventListener('change', showInputsAbm);
+
+        const tabla = document.getElementById('table-personas');
+        tabla.addEventListener('dblclick', (e) => {
+          const item = event.target.closest("tr");
+          const column = event.target.closest("th");
+
+          if (!column) {
+            abrirForm("modificar-eliminar", item);
+          }
+          else {
+            orderTable(column);
+          }
+        });
+
+        const btnAddItem = document.getElementById('btn-a');
+        btnAddItem.addEventListener
+
+    </script>
+</body>
+</html>
